@@ -19,14 +19,18 @@ var url = require('url');
  // Get the path
  var path = parsedUrl.pathname;
  var trimmedPath = path.replace(/^\/+|\?+$/g, '');
- //Send the response 
+//Get the HTTP response
 
+var method = req.method.toLowerCase();
+
+ //Send the response 
+ res.end("Hello world\n");
 
  // Log the request path 
 
- console.log('Request recieved on the path : ' +trimmedPath)
+ console.log('Request recieved on the path : ' +trimmedPath+ ' with  '+ method  )
 
-    res.end("Hello world\n");
+  
  });
 
  // Start thr server , and have it listen on port 3000 
