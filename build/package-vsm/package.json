@@ -1,0 +1,20 @@
+{
+  "name": "joint-vsm-shapes",
+  "version": "3.6.2",
+  "private": true,
+  "description": "JointJS Value Stream Mapping Shapes",
+  "homepage": "http://jointjs.com",
+  "author": {
+    "name": "client IO",
+    "url": "http://client.io"
+  },
+  "main": "dist/joint-vsm-shapes.js",
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "jointjs": "~3.6.3"
+  },
+  "types": "dist/joint-vsm-shapes.d.ts",
+  "scripts": {},
+  "devDependencies": {}
+}
