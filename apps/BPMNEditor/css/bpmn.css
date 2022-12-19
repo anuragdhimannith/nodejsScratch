@@ -20,11 +20,6 @@ file, You can obtain one at http://jointjs.com/license/rappid_v2.txt
    src: url("../fonts/Continuum-Medium-Regular.ttf") format("truetype");
 }
 
-.joint-paper-scroller .joint-paper>svg {
-    display: block;
-    background-color: rgba(31, 31, 31) !important;
-}
-
 body {
    -webkit-user-select: none;
    -moz-user-select: -moz-none;

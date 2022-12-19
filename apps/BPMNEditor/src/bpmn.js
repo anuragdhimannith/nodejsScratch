@@ -10,358 +10,18 @@ This Source Code Form is subject to the terms of the JointJS+ Trial License
 file, You can obtain one at http://jointjs.com/license/rappid_v2.txt
  or from the JointJS+ archive as was distributed by client IO. See the LICENSE file.*/
 
-const { dia } = joint;
+
 joint.setTheme('bpmn');
 
 /* GRAPH */
 
-let example = window.example;
-let inputs = window.inputs;
-let toolbarConfig = window.toolbarConfig;
-let bpmn2 = joint.shapes.bpmn2;
-let arrowSvg = window.svg['arrowSvg'].join();
-let pumpSvg = window.svg['pumpSvg'].join();
-let smallTowerSvg = window.svg['smallTowerSvg'].join();
-let airCooledCondenserSvg = window.svg['airCooledCondenserSvg'].join('');
-let bigTowerSvg = window.svg['bigTowerSvg'].join('');
-let refluxDrumSvg = window.svg['refluxDrumSvg'].join('');
-let firedHeaterSvg = window.svg['firedHeaterSvg'].join('');
-let circleSvg= window.svg['circleSvg'].join('');
-let cardSvg= window.svg['cardSvg'].join('');
-let mixingValveSvg = window.svg['mixingValveSvg'].join('');
-let desalterSvg = window.svg['desalterSvg'].join('');
-  
-console.log("the lib is",bpmn2)
-let arrowShape = dia.Element.define('bpmn2.arrow',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(arrowSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
+var example = window.example;
+var inputs = window.inputs;
+var toolbarConfig = window.toolbarConfig;
+var bpmn2 = joint.shapes.bpmn2;
 
-
-  let pumpShape = dia.Element.define('bpmn2.pump',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(pumpSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
-
-
-  let smallTowerShape = dia.Element.define('bpmn2.smallTowerSvg',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(smallTowerSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
-
-
-  let airCooledCondenserShape = dia.Element.define('bpmn2.airCooledCondenserSvg',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(airCooledCondenserSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
-
-  let bigTowerShape = dia.Element.define('bpmn2.bigTowerSvg',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(bigTowerSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
-
-  let refluxDrumShape = dia.Element.define('bpmn2.refluxDrumSvg',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(refluxDrumSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
-
-let firedHeaterShape = dia.Element.define('bpmn2.firedHeaterSvg',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(firedHeaterSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
-
-
-let circleShape = dia.Element.define('bpmn2.circleSvg',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(circleSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
-
-
-
-let cardShape = dia.Element.define('bpmn2.cardSvg',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(cardSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
-
-  let mixingValveShape = dia.Element.define('bpmn2.mixingValveSvg',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(mixingValveSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
-
-  let desalterShape = dia.Element.define('bpmn2.desalterSvg',{
-    markup: '<g class="rotatable"><g class="scalable"><image class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
-    size: {
-      width: 30,
-      height: 50
-    },
-    position: {
-      x: 500,
-      y: 390
-    },
-    attrs: {
-        body: {
-            width: 'calc(w)',
-            height: 'calc(h)',
-            strokeWidth: 2,
-            stroke: '#000000',
-            fill: '#FFFFFF'
-        },
-      '.body': {
-      //  width: 1024,
-        //height: 1988,
-        //color: 'black',
-        'xlink:href': 'data:image/svg+xml;utf8,' + encodeURIComponent(desalterSvg),
-        preserveAspectRatio: 'none'
-      }
-    },
-  });
-
-
-
-
-let BPMNTypes = {
+var BPMNTypes = {
     Pool: 'bpmn2.HeaderedPool',
-    arrow: 'bpmn2.arrow',
-    pump: 'bpmn2.pump',
-    smallTower: 'bpmn2.smallTowerSvg',
-    airCooledCondenser: 'bpmn2.airCooledCondenserSvg',
-    bigTower: 'bpmn2.bigTowerSvg',
-    refluxDrum: 'bpmn2.refluxDrumSvg',
-    firedHeater:'bpmn2.firedHeaterSvg',
-    circle:'bpmn2.circleSvg',
-    card:'bpmn2.cardSvg',
-    mixingValve: 'bpmn2.mixingValveSvg',
-    desalter: 'bpmn2.desalterSvg',
     Group: 'bpmn2.Group',
     Activity: 'bpmn2.Activity',
     Event: 'bpmn2.Event',
@@ -378,13 +38,13 @@ let BPMNTypes = {
     Choreography: 'bpmn.Choreography'
 };
 
-let graph = new joint.dia.Graph({ type: 'bpmn' }, { cellNamespace: joint.shapes });
-let commandManager = new joint.dia.CommandManager({ graph: graph });
-let keyboard = new joint.ui.Keyboard();
+var graph = new joint.dia.Graph({ type: 'bpmn' }, { cellNamespace: joint.shapes });
+var commandManager = new joint.dia.CommandManager({ graph: graph });
+var keyboard = new joint.ui.Keyboard();
 
 /* PAPER + SCROLLER */
 
-let paper = new joint.dia.Paper({
+var paper = new joint.dia.Paper({
     width: 1000,
     height: 1000,
     model: graph,
@@ -395,9 +55,6 @@ let paper = new joint.dia.Paper({
     snapLabels: true,
     cellViewNamespace: joint.shapes,
     clickThreshold: 10,
-    background: {
-        color: 'red'
-    },
     // Connections
     defaultLink: function() {
         return new bpmn2.Flow({
@@ -409,16 +66,16 @@ let paper = new joint.dia.Paper({
         });
     },
     validateConnection: function(cellViewS, _magnetS, cellViewT, _magnetT, _end) {
-        let source = cellViewS.model;
-        let target = cellViewT.model;
+        var source = cellViewS.model;
+        var target = cellViewT.model;
         // don't allow loop links
         if (source === target) return false;
         // don't allow link to link connection
         if (source.isLink()) return false;
         if (target.isLink()) return false;
         // don't allow group connections
-        let sourceType = source.get('type');
-        let targetType = target.get('type');
+        var sourceType = source.get('type');
+        var targetType = target.get('type');
         if (sourceType === BPMNTypes.Group || targetType === BPMNTypes.Group) return false;
         if (sourceType === BPMNTypes.Pool || targetType === BPMNTypes.Pool) return false;
         return true;
@@ -433,9 +90,9 @@ let paper = new joint.dia.Paper({
     // Embedding
     embeddingMode: true,
     frontParentOnly: false,
-    validateEmbedding: function(childView, parencircletView) {
-        let parentType = parentView.model.get('type');
-        let childType = childView.model.get('type');
+    validateEmbedding: function(childView, parentView) {
+        var parentType = parentView.model.get('type');
+        var childType = childView.model.get('type');
         if (parentType === BPMNTypes.Pool && childType !== BPMNTypes.Pool) return true;
         if (parentType === BPMNTypes.Activity && childType === BPMNTypes.Event) return true;
         if (parentType === BPMNTypes.Group && childType !== BPMNTypes.Group && childType !== BPMNTypes.Pool) return true;
@@ -466,15 +123,15 @@ let paper = new joint.dia.Paper({
     },
 
     'cell:pointerclick': function(cellView, evt, x, y) {
-        Tools(cellView, g.Point(x, y));
+        openTools(cellView, g.Point(x, y));
     },
 
     'link:mouseenter': function(linkView) {
         // Open tool only if there is none yet
         if (linkView.hasTools()) return;
 
-        let ns = joint.linkTools;
-        let toolsView = new joint.dia.ToolsView({
+        var ns = joint.linkTools;
+        var toolsView = new joint.dia.ToolsView({
             name: 'link-hover',
             tools: [
                 new ns.Vertices({ vertexAdding: false }),
@@ -495,12 +152,12 @@ let paper = new joint.dia.Paper({
 
     'link:connect': function(linkView) {
         // Change the link type based on the connected elements
-        let link = linkView.model;
-        let source = link.getSourceCell();
-        let target = link.getTargetCell();
+        var link = linkView.model;
+        var source = link.getSourceCell();
+        var target = link.getTargetCell();
         if (!source || !target) return;
-        let types = [source.get('type'), target.get('type')];
-        let linkType = link.get('type');
+        var types = [source.get('type'), target.get('type')];
+        var linkType = link.get('type');
         if (types.indexOf(BPMNTypes.Annotation) > -1) {
             if (linkType === BPMNTypes.AnnotationLink) return;
             replaceLink(graph, link, BPMNTypes.AnnotationLink);
@@ -529,10 +186,9 @@ let paper = new joint.dia.Paper({
 
 });
 
-let paperScroller = new joint.ui.PaperScroller({
+var paperScroller = new joint.ui.PaperScroller({
     autoResizePaper: true,
     padding: 50,
-    stroke: '#954838',
     paper: paper,
     scrollWhileDragging: true
 });
@@ -542,7 +198,7 @@ paperScroller.center();
 
 /* SELECTION */
 
-let selection = new joint.ui.Selection({
+var selection = new joint.ui.Selection({
     paper: paper,
     graph: graph,
     useModelGeometry: true,
@@ -551,25 +207,25 @@ let selection = new joint.ui.Selection({
 
 /* STENCIL */
 
-let stencil = new joint.ui.Stencil({
+var stencil = new joint.ui.Stencil({
     graph: graph,
     paper: paperScroller,
     width: '100%',
     height: '100%',
     dragEndClone: function(cell) {
 
-        let clone = cell.clone();
-        let type = clone.get('type');
+        var clone = cell.clone();
+        var type = clone.get('type');
 
         // some types of the elements need resizing after they are dropped
-        let sizeMultipliers = {};
+        var sizeMultipliers = {};
         sizeMultipliers[BPMNTypes.Pool] = 6,
         sizeMultipliers[BPMNTypes.Choreography] = 2;
         sizeMultipliers[BPMNTypes.Group] = 2;
 
         if (type in sizeMultipliers) {
-            let multiplier = sizeMultipliers[type]
-            let originalSize = clone.size();
+            var multiplier = sizeMultipliers[type]
+            var originalSize = clone.size();
             clone.set('size', {
                 width: originalSize.width * multiplier,
                 height: originalSize.height * multiplier
@@ -577,7 +233,7 @@ let stencil = new joint.ui.Stencil({
         }
 
         if (type === BPMNTypes.Pool) {
-            let height = clone.size().height;
+            var height = clone.size().height;
             clone.set({
                 lanes: [{
                     label: 'Lane 1',
@@ -603,31 +259,9 @@ stencil.load([{
     type: BPMNTypes.Gateway
 }, {
     type: BPMNTypes.Event
-},{
-    type: BPMNTypes.arrow
-},{
-    type: BPMNTypes.pump
-},{
-    type: BPMNTypes.smallTower
-},{
-    type: BPMNTypes.airCooledCondenser
-},{
-    type: BPMNTypes.bigTower
-},{
-    type: BPMNTypes.refluxDrum
-},{
-    type: BPMNTypes.firedHeater
-},{
-    type: BPMNTypes.circle
-},{
-    type: BPMNTypes.card
-},{
-    type: BPMNTypes.mixingValve
-},{
-    type: BPMNTypes.desalter
-},{
+}, {
     type: BPMNTypes.Conversation
-},{
+}, {
     type: BPMNTypes.DataAssociation
 }, {
     type: BPMNTypes.DataStore
@@ -690,7 +324,7 @@ keyboard.on('delete backspace', function() {
 
 /* TOOLBAR */
 
-let toolbar = new joint.ui.Toolbar({
+var toolbar = new joint.ui.Toolbar({
     tools: toolbarConfig.tools,
     references: {
         paperScroller: paperScroller,
@@ -700,12 +334,10 @@ let toolbar = new joint.ui.Toolbar({
 
 toolbar.on({
     'to-json:pointerclick': function() {
-        console.log("the graph 1 is", graph);
-        let windowFeatures = 'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no';
-        let windowName = _.uniqueId('json_output');
-        let jsonWindow = window.open('', windowName, windowFeatures);
+        var windowFeatures = 'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no';
+        var windowName = _.uniqueId('json_output');
+        var jsonWindow = window.open('', windowName, windowFeatures);
         if (jsonWindow) {
-            console.log("the graph is", graph);
             jsonWindow.document.write(JSON.stringify(graph.toJSON()));
         }
     },
@@ -759,8 +391,8 @@ function openTools(cellView, coordinates) {
 
     closeTools();
 
-    let cell = cellView.model;
-    let type = cell.get('type');
+    var cell = cellView.model;
+    var type = cell.get('type');
 
     selection.collection.reset([]);
     // Add the cell into the selection collection silently
@@ -790,15 +422,15 @@ function openTools(cellView, coordinates) {
 
 function createPoolTools(poolView, coordinates) {
 
-    let pool = poolView.model;
+    var pool = poolView.model;
 
     // If there is a lane under the pointer (mouse/touch),
     // add the swimlane tools and remove the FreeTransform from the cell
-    let lanesIds = pool.getLanesFromPoint(coordinates);
+    var lanesIds = pool.getLanesFromPoint(coordinates);
     if (lanesIds.length === 0) return;
-    let laneId = lanesIds[0];
+    var laneId = lanesIds[0];
 
-    let boundaryTool = new joint.elementTools.SwimlaneBoundary({
+    var boundaryTool = new joint.elementTools.SwimlaneBoundary({
         laneId: laneId,
         padding: 0,
         attributes: {
@@ -807,12 +439,12 @@ function createPoolTools(poolView, coordinates) {
             'stroke': '#3498db'
         }
     });
-    let transformTool = new joint.elementTools.SwimlaneTransform({
+    var transformTool = new joint.elementTools.SwimlaneTransform({
         laneId: laneId,
         minSize: 60,
         padding: 0,
     });
-    let elementToolsView = new joint.dia.ToolsView({
+    var elementToolsView = new joint.dia.ToolsView({
         tools: [boundaryTool, transformTool]
     });
     poolView.addTools(elementToolsView);
@@ -820,8 +452,8 @@ function createPoolTools(poolView, coordinates) {
 }
 
 function createLinkTools(linkView) {
-    let ns = joint.linkTools;
-    let toolsView = new joint.dia.ToolsView({
+    var ns = joint.linkTools;
+    var toolsView = new joint.dia.ToolsView({
         name: 'link-pointerdown',
         tools: [
             new ns.Vertices(),
@@ -840,8 +472,8 @@ function createLinkTools(linkView) {
 
 
 function createElementHalo(cellView) {
-    let type = cellView.model.get('type');
-    let halo = new joint.ui.Halo({
+    var type = cellView.model.get('type');
+    var halo = new joint.ui.Halo({
         cellView: cellView,
         theme: 'default',
         type: 'toolbar',
@@ -861,8 +493,8 @@ function createElementHalo(cellView) {
 }
 
 function createElementFreeTransform(cellView) {
-    let defaultMinSize = 30;
-    let freeTransform = new joint.ui.FreeTransform({
+    var defaultMinSize = 30;
+    var freeTransform = new joint.ui.FreeTransform({
         cellView: cellView,
         allowOrthogonalResize: false,
         allowRotation: false,
@@ -877,7 +509,7 @@ function createElementFreeTransform(cellView) {
 }
 
 function replaceLink(graph, link, type) {
-    let link2JSON = {
+    var link2JSON = {
         type: type,
         source: link.source(),
         target: link.target(),
